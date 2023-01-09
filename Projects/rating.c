@@ -22,7 +22,7 @@ printf("What is the name of the movie: (one word-title only)\n");
 scanf(" %s", nameMovies);
 printf("On a size from 1 to 10 how much you ganna rate it:\n");
 scanf(" %d", &rating);
-}
+
 
 if(rating>favRating){
 strcpy(favorite, nameMovies);
@@ -32,6 +32,7 @@ favRating=rating;
 if(rating<leastRating){
 strcpy(least, nameMovies);
 leastRating=rating;
+}
 }
 printf("\nYour favorite move is %s.", favorite);
 printf("\nYour least favorite movie is %s.\n\n",least);
