@@ -1,46 +1,102 @@
 #include <stdio.h>
+#include <ctype.h>
+#include <unistd.h>
 
 int main(){
-
-	int i,inner,outer,Swap,temp;
+	int temp=0;
+	int Switch, i, inner, outer;
 	int N;
-	temp=0;
+	char ans, ans1;
+	char name[30];
+	printf("What is your name: ");
+	scanf("%[^\n]s", name);
 
-	printf("This is a program which sort the unsorted numbers \n");
-	printf("Input how many numbers do you want to enter: \n");
+	do{
+	printf("Enter how many values do you want to enter: ");
 	scanf(" %d", &N);
 	int nums[N];
-	printf("Enter %d numbers you want: \n\n", N);
+
+	printf("Enter %d number you want: \n", N);
 
 	for(i=0;i<N;i++){
-		printf("Enter the #%d number: ", i+1);
+		printf("Enter the value of the #%d number: ", i+1);
 		scanf(" %d", &nums[i]);
+
 	}
-	printf("The entered numbers are: \n");
+	printf("\n\nThe inputed values are: \n");
 	for(i=0;i<N;i++){
 		printf("%d\n", nums[i]);
 	}
-	
-	for(outer=0;outer<N-1;outer++){
-		Swap=0;
+	do{
+	printf("Do you want to sort the values by increasing or decreasing? \n");
+	printf("Enter (I) for increasing and (D) for decreasing.\n");
+	scanf(" %c", &ans);
+	ans=toupper(ans);
+
+	if(ans=='I'){
+	for(outer=0;outer<N;outer++){
+		Switch=0;//Turns one when is positive+
 		for(inner=outer;inner<N;inner++){
-			if(nums[inner] < nums[outer]){
-				temp=nums[inner];
-				nums[inner]=nums[outer];
-				nums[outer]=temp;
-				Swap=1;
-			}
+				if(nums[inner]<nums[outer]){
+					temp=nums[inner];
+					nums[inner]=nums[outer];
+					nums[outer]=temp;
+				}
 
 		}
-		if(Swap==0){
+		if(Switch=0){
 			break;
 		}
+
 	}
 
-	printf("The sorted numbers are: \n");
-	for(i=0;i<N;i++){
-		printf("%d\n", nums[i]);
+printf("\nThe sorted values are: \n");
+for(i=0;i<N;i++){
+	printf("%d\n", nums[i] );
+}
+}
+else if(ans=='D'){
+	for(outer=0;outer<N;outer++){
+		Switch=0;//Turns one when is positive+
+		for(inner=outer;inner<N;inner++){
+				if(nums[inner]>	nums[outer]){
+					temp=nums[inner];
+					nums[inner]=nums[outer];
+					nums[outer]=temp;
+				}
+
+		}
+		if(Switch=0){
+			break;
+		}
+
 	}
+
+printf("\nThe sorted values are: \n");
+for(i=0;i<N;i++){
+	printf("%d\n", nums[i] );
+}
+
+}
+else{
+	printf("Wrong input try again!\n");
+}
+}
+while((ans!='I')&&(ans!='D'));
+
+printf("Do you want to start the program again from the beggining? [Y/N]\n");
+scanf(" %c", &ans1);
+ans1=toupper(ans1);
+}
+while(ans1!='N');
+
+printf("\t\t\t\tProgram ended\n");
+sleep(1);
+printf("==========================================================================================\n");
+printf("Thanks for playing my game %s....\n", name);
+
+
 
 	return 0;
-}//endline
+
+}//end line
